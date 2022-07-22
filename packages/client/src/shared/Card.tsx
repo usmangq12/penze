@@ -1,4 +1,4 @@
-import { Card as MuiCard } from "@mui/material";
+import { Card as MuiCard , Grid } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
@@ -20,16 +20,17 @@ export const Card = (props: ICard) => {
   const { title, date, content } = props;
   return (
     <LinkStlyed to="/Details" state={props}>
-      <MuiCard sx={{ maxWidth: 345 }}>
+      
+      <MuiCard>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography sx={{margin:0}} gutterBottom variant="h5" component="div">
             {title}
           </Typography>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="subtitle1" component="div">
             {date}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {content}...
+            {content.slice(0, 100)}...
           </Typography>
         </CardContent>
         <CardActions>
