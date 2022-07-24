@@ -16,8 +16,10 @@ export const Blogs = ({ blogs }: IBlogsProps) => {
     <Grid container item sx={{ mt: 20 }}>
       {blogs.map((blog: IBlog) => (
         <Grid
+          container
           item
-          sx={{ p: 2, display: "flex", flexDirection: "row" }}
+          direction={"row"}
+          sx={{ p: 2 }}
           xs={12}
           sm={6}
           md={3}
