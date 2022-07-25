@@ -14,7 +14,7 @@ interface IBlogsProps {
 }
 
 export const Pagination = ({ config, onChange }: IBlogsProps) => {
-  console.log({ config });
+  // console.log({ config });
   return (
     <>
       <Stack spacing={2}>

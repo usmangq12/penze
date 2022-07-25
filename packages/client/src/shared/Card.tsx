@@ -1,29 +1,29 @@
-import { Card as MuiCard , Grid } from "@mui/material";
+import { Card as MuiCard, Grid } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { NavLink as RouterNavLink } from "react-router-dom";
-import { styled } from "@mui/material/styles";
+import { LinkStlyed } from "./LinkStyled";
+import { IBlogProps } from "../Models/Blogs";
 
-const LinkStlyed = styled(RouterNavLink)(({ theme }) => ({
-  textDecoration: "none",
-}));
+export const Card = ({ blog, onClick }: IBlogProps) => {
+  const { id, title, date, content } = blog;
 
-interface ICard {
-  title: string;
-  date: string;
-  content: string;
-}
-
-export const Card = (props: ICard) => {
-  const { title, date, content } = props;
+  console.log(id);
   return (
-    <LinkStlyed to="/Details" state={props}>
-      
+    <LinkStlyed
+      to={`/Details/${id}`}
+      state={blog}
+      onClick={() => onClick(blog)}
+    >
       <MuiCard>
         <CardContent>
-          <Typography sx={{margin:0}} gutterBottom variant="h5" component="div">
+          <Typography
+            sx={{ margin: 0 }}
+            gutterBottom
+            variant="h5"
+            component="div"
+          >
             {title}
           </Typography>
           <Typography gutterBottom variant="subtitle1" component="div">
