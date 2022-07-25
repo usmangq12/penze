@@ -11,11 +11,7 @@ export const Card = ({ blog, onClick }: IBlogProps) => {
 
   console.log(id);
   return (
-    <LinkStlyed
-      to={`/Details/${id}`}
-      state={blog}
-      onClick={() => onClick(blog)}
-    >
+    <LinkStlyed to="/details" state={blog}>
       <MuiCard>
         <CardContent>
           <Typography

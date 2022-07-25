@@ -4,30 +4,33 @@ import {
   CardContent,
   Grid,
   Typography,
-  TextField,
   Button,
   Avatar,
-  TextareaAutosize,
   CardActions,
   ListItemAvatar,
 } from "@mui/material";
+import { TextField } from "../shared/TextField";
+import { TextArea } from "../shared/TextArea";
+// import { Button } from "../shared/Button";
 import { useState } from "react";
 import { Comment } from "../types";
 export const Details = () => {
   const location = useLocation();
-  console.log(location.state);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [comment, setComments] = useState<Comment[]>([]);
+  const [openInput, setInput] = useState<boolean>(true);
 
   const addComments = () => {
     const blogComment: Comment = {
-      name: "hh",
-      message: "h",
+      name: "",
+      message: "",
     };
     setComments([...comment, blogComment]);
   };
-
+  const showInput = () => {
+    setInput(!openInput);
+  };
   return (
     <Grid
       container
@@ -44,7 +47,7 @@ export const Details = () => {
             mt: 2,
           }}
         >
-          Detail Pagae
+          Detail Page
         </Typography>
         <Grid
           mt={2}
@@ -104,31 +107,8 @@ export const Details = () => {
                 gap={4}
                 sx={{ display: "flex", flexDirection: "column", pt: 3.5 }}
               >
-                <TextField
-                  sx={{
-                    height: "40px",
-                    borderColor: "#000",
-                    color: "#fff",
-                    borderRadius: 2,
-                  }}
-                  placeholder="Your Full Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-
-                <TextareaAutosize
-                  cols={30}
-                  minRows={10}
-                  placeholder="Your Message"
-                  style={{
-                    borderRadius: "4px",
-                    color: "#fff",
-                    resize: "none",
-                    padding: "16px",
-                  }}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                />
+                <TextField />
+                <TextArea />
               </Grid>
             </CardContent>
             <CardActions>
@@ -152,9 +132,7 @@ export const Details = () => {
           </Card>
         </Grid>
         <Grid xs={12} sm={9} md={5.5} mt={4} ml={2}>
-          
-          <Card sx={{ backgroundColor: "	#f0f6ff" }}>
-            
+          <Card>
             <Grid
               sx={{
                 display: "flex",
@@ -179,7 +157,7 @@ export const Details = () => {
                 </Typography>
                 <Grid sx={{ display: "flex" }}>
                   <Typography sx={{ fontSize: "14px" }}>2/4/2022</Typography>
-                  <Typography sx={{ fontSize: "14px" }}>AT</Typography>
+                  <Typography sx={{ fontSize: "14px", mx: 1 }}>AT</Typography>
 
                   <Typography sx={{ fontSize: "14px" }}>6:58 PM`</Typography>
                 </Grid>
@@ -197,12 +175,42 @@ export const Details = () => {
                   ml: 1,
                   fontWeight: "500",
                 }}
+                onClick={showInput}
               >
                 reply
               </Button>
             </CardActions>
           </Card>
         </Grid>
+        {!openInput ? (
+          <Grid ml={6} xs={12} sm={9} md={5.2} mt={4}>
+            <Grid gap={4} sx={{ display: "flex", flexDirection: "column" }}>
+              <TextField />
+              <TextArea />
+            </Grid>
+            <Grid>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "#29343B",
+                  ml: 1,
+                  mt: 2,
+                  px: 2.5,
+                  py: 1.5,
+                  fontWeight: "500",
+                  "&:hover": {
+                    backgroundColor: "#29343B !important",
+                  },
+                }}
+                onClick={addComments}
+              >
+                Submit
+              </Button>
+            </Grid>
+          </Grid>
+        ) : (
+          ""
+        )}
         <Grid xs={12} sm={9} md={5.2} mt={2} ml={6}>
           <Card sx={{ backgroundColor: "	#f0f6ff" }}>
             <Grid
@@ -230,7 +238,7 @@ export const Details = () => {
                 <Grid sx={{ display: "flex" }}>
                   <Grid sx={{ display: "flex" }}>
                     <Typography sx={{ fontSize: "14px" }}>2/4/2022</Typography>
-                    <Typography sx={{ fontSize: "14px" }}>AT</Typography>
+                    <Typography sx={{ fontSize: "14px", mx: 1 }}>AT</Typography>
 
                     <Typography sx={{ fontSize: "14px" }}>6:58 PM`</Typography>
                   </Grid>

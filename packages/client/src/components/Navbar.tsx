@@ -5,7 +5,6 @@ import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import { Comment } from "../types";
 import { LinkStlyed } from "../shared/LinkStyled";
 
 export function Navbar() {

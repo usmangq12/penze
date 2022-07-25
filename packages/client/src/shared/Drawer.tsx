@@ -43,17 +43,18 @@ export const Drawer = (props: IPersistentDrawerRight) => {
       <CssBaseline />
       <MuiDrawer
         sx={{
-          width: drawerWidth,
+          // width: drawerWidth,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
-            width: drawerWidth,
+            maxWidth: drawerWidth,
+            width: "100%",
           },
         }}
         variant="persistent"
         anchor="right"
         open={openDrawer}
       >
-        <DrawerHeader sx={{ backgroundColor: "#1976d2" }}>
+        <DrawerHeader sx={{ background: "#29343B " }}>
           <Grid
             container
             item
