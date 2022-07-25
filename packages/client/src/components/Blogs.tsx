@@ -1,21 +1,20 @@
 import { Grid } from "@mui/material";
 import { Card } from "../shared";
+import { IBlog } from "../Models/Blogs";
+import { useAppDispatch } from "../app/hooks";
+import { selectedBlog } from "../store/BlogsSlice";
 
-interface IBlog {
-  title: string;
-  date: string;
-  content: string;
-}
-
-interface IBlogsProps {
-  blogs: IBlog[];
-}
-
-export const Blogs = ({ blogs }: IBlogsProps) => {
+export const Blogs = ({ blogs }: any) => {
+  const dispatch = useAppDispatch();
+  // dispatch action on onClick
+  const onClick = (blog: any) => {
+    dispatch(selectedBlog(blog));
+  };
   return (
     <Grid container item sx={{ mt: 20 }}>
       {blogs.map((blog: IBlog) => (
         <Grid
+          // key={`blog-id${i}`}
           container
           item
           direction={"row"}
@@ -24,7 +23,7 @@ export const Blogs = ({ blogs }: IBlogsProps) => {
           sm={6}
           md={3}
         >
-          <Card title={blog.title} date={blog.date} content={blog.content} />
+          <Card blog={blog} onClick={onClick} />
         </Grid>
       ))}
     </Grid>

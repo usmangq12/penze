@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -6,16 +5,10 @@ import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import { NavLink as RouterNavLink } from "react-router-dom";
-import { styled } from "@mui/material/styles";
 import { Comment } from "../types";
-
-const LinkStlyed = styled(RouterNavLink)(({ theme }) => ({
-  textDecoration: "none",
-}));
+import { LinkStlyed } from "../shared/LinkStyled";
 
 export function Navbar() {
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -27,7 +20,7 @@ export function Navbar() {
             edge="start"
             sx={{ mr: 2 }}
           ></IconButton>
-          <LinkStlyed to="/Details">
+          <LinkStlyed to="/">
             <Typography
               variant="h6"
               noWrap
