@@ -8,14 +8,11 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { NavLink as RouterNavLink } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { Comment } from "../types";
-
 const LinkStlyed = styled(RouterNavLink)(({ theme }) => ({
   textDecoration: "none",
 }));
 
 export function Navbar() {
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -27,7 +24,7 @@ export function Navbar() {
             edge="start"
             sx={{ mr: 2 }}
           ></IconButton>
-          <LinkStlyed to="/Details">
+          <LinkStlyed to="/">
             <Typography
               variant="h6"
               noWrap

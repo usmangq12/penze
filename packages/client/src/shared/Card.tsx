@@ -1,4 +1,4 @@
-import { Card as MuiCard , Grid } from "@mui/material";
+import { Card as MuiCard, Grid } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
@@ -19,11 +19,15 @@ interface ICard {
 export const Card = (props: ICard) => {
   const { title, date, content } = props;
   return (
-    <LinkStlyed to="/Details" state={props}>
-      
+    <LinkStlyed to="/details" state={props}>
       <MuiCard>
         <CardContent>
-          <Typography sx={{margin:0}} gutterBottom variant="h5" component="div">
+          <Typography
+            sx={{ margin: 0 }}
+            gutterBottom
+            variant="h5"
+            component="div"
+          >
             {title}
           </Typography>
           <Typography gutterBottom variant="subtitle1" component="div">

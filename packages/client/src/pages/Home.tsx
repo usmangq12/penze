@@ -152,6 +152,10 @@ export const Home = () => {
             bottom: 20,
             left: "auto",
             position: "fixed",
+            backgroundColor: "#29343B",
+            "&:hover": {
+              backgroundColor: "#29343B !important",
+            },
           }}
           onClick={() => setOpenCreateBlogModal(true)}
           color="primary"

@@ -1,17 +1,19 @@
 import React from "react";
-import { Grid, TextField, Button } from "@mui/material";
+import { Grid, TextField, Button, FormGroup } from "@mui/material";
 
 export const CreateBlogModal = ({ selectedRow }: any) => {
   return (
-    <form>
+    <Grid component="form">
       <Grid
         container
         justifyContent="center"
         alignItems="center"
+        flexWrap="wrap"
+        // flexDirection="coli"
         spacing={2}
         sx={{ px: 2, py: 2 }}
       >
-        <Grid item lg={6} xs={12}>
+        <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
@@ -21,7 +23,7 @@ export const CreateBlogModal = ({ selectedRow }: any) => {
             variant="filled"
           />
         </Grid>
-        <Grid item lg={6} xs={12}>
+        <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
@@ -31,10 +33,23 @@ export const CreateBlogModal = ({ selectedRow }: any) => {
             variant="filled"
           />
         </Grid>
-        <Button variant="contained" sx={{ px: 2.5, py: 1.5, my: 4 }}>
-          Create
-        </Button>
+        <Grid container justifyContent="center">
+          <Button
+            variant="contained"
+            sx={{
+              px: 2.5,
+              py: 1.5,
+              my: 4,
+              background: "#29343B ",
+              "&:hover": {
+                backgroundColor: "#29343B !important",
+              },
+            }}
+          >
+            Create
+          </Button>
+        </Grid>
       </Grid>
-    </form>
+    </Grid>
   );
 };
