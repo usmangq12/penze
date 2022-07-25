@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import { Card } from "../shared";
 import { IBlog } from "../Models/Blogs";
-import { useAppDispatch } from "../app/hooks";
+import { useAppDispatch } from "../store/hooks";
 import { selectedBlog } from "../store/BlogsSlice";
 
 export const Blogs = ({ blogs }: any) => {
