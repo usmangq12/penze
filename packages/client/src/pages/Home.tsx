@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 
 export const Home = () => {
   let blogs = useSelector(({ blogs }: any) => blogs.blogs);
-  console.log({ blogs });
   const itemsPerPage = 5;
   const [page, setPage] = useState(1);
   const [openCreateBlogModal, setOpenCreateBlogModal] = useState(false);

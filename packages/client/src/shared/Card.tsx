@@ -8,8 +8,6 @@ import { IBlogProps } from "../Models/Blogs";
 
 export const Card = ({ blog, onClick }: IBlogProps) => {
   const { id, title, date, content } = blog;
-
-  console.log(id);
   return (
     <LinkStlyed to="/details" state={blog}>
       <MuiCard>

@@ -1,6 +1,6 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import blogsSliceReducer from '../store/BlogsSlice';
-import commentsSliceReducer from '../store/CommentsSlice';
+import blogsSliceReducer from './BlogsSlice';
+import commentsSliceReducer from './CommentsSlice';
 
 export const store = configureStore({
   reducer: {
