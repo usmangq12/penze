@@ -3,9 +3,9 @@ import { styled, useTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { Drawer as MuiDrawer, Grid, Typography } from "@mui/material";
+import { Drawer as MuiDrawer, Grid, Typography, Box } from "@mui/material";
 
-const drawerWidth = 1240;
+const drawerWidth = 720;
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -41,9 +41,9 @@ export const Drawer = (props: IPersistentDrawerRight) => {
   return (
     <Grid container item>
       <CssBaseline />
+
       <MuiDrawer
         sx={{
-          // width: drawerWidth,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
             maxWidth: drawerWidth,
@@ -54,7 +54,9 @@ export const Drawer = (props: IPersistentDrawerRight) => {
         anchor="right"
         open={openDrawer}
       >
-        <DrawerHeader sx={{ background: "#29343B " }}>
+        <DrawerHeader
+          sx={{ background: "#29343B ", minHeight: "50px !important" }}
+        >
           <Grid
             container
             item
