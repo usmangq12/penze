@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, TextareaAutosize } from "@mui/material";
 
-export const TextArea = () => {
+export const TextArea = ({ value, onChange, ...rest }: any) => {
   return (
     <TextareaAutosize
       cols={30}
@@ -13,6 +13,6 @@ export const TextArea = () => {
         resize: "none",
         padding: "16px",
       }}
-    />
+    ></TextareaAutosize>
   );
 };

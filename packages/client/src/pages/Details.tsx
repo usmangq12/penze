@@ -9,6 +9,7 @@ import {
   CardActions,
   ListItemAvatar,
 } from "@mui/material";
+import { StyeldButton } from "../shared/StyeldButton";
 import { TextField } from "../shared/TextField";
 import { TextArea } from "../shared/TextArea";
 import { useSelector } from "react-redux";
@@ -35,6 +36,9 @@ export const Details = () => {
 
   const detail = useSelector(({ blogs }: any) => blogs.selectedBlogDetails);
 
+  const hideInput = () => {
+    setInput(!openInput);
+  };
   return (
     <Grid
       container
@@ -111,22 +115,7 @@ export const Details = () => {
               </Grid>
             </CardContent>
             <CardActions>
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "#29343B",
-                  ml: 1,
-                  px: 2.5,
-                  py: 1.5,
-                  fontWeight: "500",
-                  "&:hover": {
-                    backgroundColor: "#29343B !important",
-                  },
-                }}
-                onClick={addComments}
-              >
-                Submit
-              </Button>
+              <StyeldButton handelClick={addComments}>Submit</StyeldButton>
             </CardActions>
           </Card>
         </Grid>
@@ -188,23 +177,8 @@ export const Details = () => {
               <TextArea />
             </Grid>
             <Grid>
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "#29343B",
-                  ml: 1,
-                  mt: 2,
-                  px: 2.5,
-                  py: 1.5,
-                  fontWeight: "500",
-                  "&:hover": {
-                    backgroundColor: "#29343B !important",
-                  },
-                }}
-                onClick={addComments}
-              >
-                Submit
-              </Button>
+              <StyeldButton handelClick={addComments}>Submit</StyeldButton>
+              <StyeldButton handelClick={hideInput}>Cancel</StyeldButton>
             </Grid>
           </Grid>
         ) : (
