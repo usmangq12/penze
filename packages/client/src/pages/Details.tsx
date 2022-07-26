@@ -11,11 +11,12 @@ import {
 } from "@mui/material";
 import { TextField } from "../shared/TextField";
 import { TextArea } from "../shared/TextArea";
-// import { Button } from "../shared/Button";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { Comment } from "../types";
+import { useParams } from "react-router-dom";
+
 export const Details = () => {
-  const location = useLocation();
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [comment, setComments] = useState<Comment[]>([]);
@@ -31,6 +32,9 @@ export const Details = () => {
   const showInput = () => {
     setInput(!openInput);
   };
+
+  const detail = useSelector(({ blogs }: any) => blogs.selectedBlogDetails);
+
   return (
     <Grid
       container
@@ -64,7 +68,7 @@ export const Details = () => {
               fontWeight: "750",
             }}
           >
-            Lorem Ipsum
+            {detail.title}
           </Typography>
         </Grid>
 
@@ -79,12 +83,7 @@ export const Details = () => {
             mt: 2,
           }}
         >
-          <Typography variant="body1">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
-          </Typography>
+          <Typography variant="body1">{detail.content}</Typography>
         </Grid>
         <Grid
           xs={12}
