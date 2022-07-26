@@ -18,11 +18,6 @@ const db = mongoose
 
 app.use(router);
 
-// app.listen(port, (err) => {
-//   if (err) console.log("Error in server setup");
-//   console.log("Server listening on Port", port);
-// });
-
 app.listen(port, () => {
   console.log("Server is running at port 5000");
 });

@@ -1,4 +1,5 @@
 const blog = require("../models/blog.model");
+const mongoose = require("mongoose");
 
 exports.addNewBlog = async (req, res) => {
   const blogData = req.body;
@@ -25,12 +26,13 @@ exports.getAllBlogs = async (req, res) => {
 };
 
 exports.getBlogById = async (req, res) => {
-  const id = req.params["íd"];
-  if (!id) {
+  const id = req.params.íd;
+  console.log({ req: req.params.id });
+  if (!req.params.id) {
     return res.status(400).send({ error: "Blog id is missing!" });
   }
-  const blog = await blog.aggregate([
-    { $match: { id } },
+  const blogRecord = await blog.aggregate([
+    { $match: { _id: mongoose.Types.ObjectId(`${req.params.id}`) } },
     {
       $lookup: {
         from: "Comment",
@@ -40,8 +42,9 @@ exports.getBlogById = async (req, res) => {
       },
     },
   ]);
-  if (!blog) {
+  console.log({ blogRecord });
+  if (!blogRecord) {
     return res.status(404).send({ error: "Blog not found!" });
   }
-  return res.status(200).send({ blog });
+  return res.status(200).send({ blogRecord });
 };
