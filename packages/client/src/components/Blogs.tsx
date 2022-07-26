@@ -1,8 +1,8 @@
 import { Grid } from "@mui/material";
 import { Card } from "../shared";
 import { IBlog } from "../Models/Blogs";
-import { useAppDispatch } from "../store/hooks";
 import { selectedBlog } from "../store/BlogsSlice";
+import { useAppDispatch } from "../store/hooks";
 
 export const Blogs = ({ blogs }: any) => {
   const dispatch = useAppDispatch();
@@ -11,7 +11,7 @@ export const Blogs = ({ blogs }: any) => {
     dispatch(selectedBlog(blog));
   };
   return (
-    <Grid container item sx={{ mt: 10, p: 2 }}>
+    <Grid container item sx={{ mt: 20 }}>
       {blogs.map((blog: IBlog) => (
         <Grid
           // key={`blog-id${i}`}
@@ -20,10 +20,10 @@ export const Blogs = ({ blogs }: any) => {
           direction={"row"}
           sx={{ p: 2 }}
           xs={12}
-          sm={4}
+          sm={6}
           md={3}
         >
-          <Card blog={blog} onClick={onClick} />
+          <Card blog={blog} onClick={(blog: any) => onClick(blog)} />
         </Grid>
       ))}
     </Grid>
