@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 
-export const StyeldButton = () => {
+export const StyeldButton = ({ text, handelClick, children, ...rest }: any) => {
   return (
     <Button
       variant="contained"
@@ -16,6 +16,10 @@ export const StyeldButton = () => {
           backgroundColor: "#29343B !important",
         },
       }}
-    ></Button>
+      onClick={handelClick}
+      {...rest}
+    >
+      {children}
+    </Button>
   );
 };
