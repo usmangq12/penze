@@ -19,7 +19,7 @@ exports.getAllBlogs = async (req, res) => {
   try {
     console.log("--------------Blogs caught");
     const blogs = await blog.find();
-    return res.status(200).send({ blogs, test: "bsdjabsjcb " });
+    return res.status(200).send(blogs);
   } catch (e) {
     return res.status(500).send(e);
   }
