@@ -9,7 +9,7 @@ import {
   CardActions,
   ListItemAvatar,
 } from "@mui/material";
-import { StyeldButton } from "../shared/StyeldButton";
+import { StyledButton } from "../shared/StyledButton";
 import { TextField } from "../shared/TextField";
 import { TextArea } from "../shared/TextArea";
 import { useSelector } from "react-redux";
@@ -103,7 +103,7 @@ export const Details = () => {
               </Grid>
             </CardContent>
             <CardActions>
-              <StyeldButton>Submit</StyeldButton>
+              <StyledButton>Submit</StyledButton>
             </CardActions>
           </Card>
         </Grid>
@@ -165,8 +165,8 @@ export const Details = () => {
               <TextArea />
             </Grid>
             <Grid>
-              <StyeldButton>Submit</StyeldButton>
-              <StyeldButton handelClick={hideInput}>Cancel</StyeldButton>
+              <StyledButton>Submit</StyledButton>
+              <StyledButton handelClick={hideInput}>Cancel</StyledButton>
             </Grid>
           </Grid>
         ) : (

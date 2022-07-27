@@ -1,6 +1,12 @@
 import React, { useState } from "react";
-import { Grid, TextField, Button, FormGroup } from "@mui/material";
-import { StyeldButton } from "../shared/StyeldButton";
+import {
+  Grid,
+  TextField,
+  Button,
+  FormGroup,
+  TextareaAutosize,
+} from "@mui/material";
+import { StyledButton } from "../shared/StyledButton";
 export const CreateBlogModal = ({ selectedRow }: any) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -14,7 +20,7 @@ export const CreateBlogModal = ({ selectedRow }: any) => {
         spacing={2}
         sx={{ px: 2, py: 2 }}
       >
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <TextField
             fullWidth
             required
@@ -24,8 +30,8 @@ export const CreateBlogModal = ({ selectedRow }: any) => {
             variant="filled"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
+        <Grid item xs={12}>
+          {/* <TextField
             fullWidth
             required
             id="filled-required"
@@ -34,10 +40,22 @@ export const CreateBlogModal = ({ selectedRow }: any) => {
             variant="filled"
             value={content}
             onChange={(e) => setContent(e.target.value)}
+          /> */}
+          <TextareaAutosize
+            // cols={30}
+            minRows={5}
+            placeholder="Blog"
+            style={{
+              borderRadius: "4px",
+              fontSize: "16px",
+              resize: "none",
+              padding: "16px",
+              width: "100%",
+            }}
           />
         </Grid>
         <Grid container justifyContent="center">
-          <StyeldButton>Create</StyeldButton>
+          <StyledButton>Create</StyledButton>
         </Grid>
       </Grid>
     </Grid>

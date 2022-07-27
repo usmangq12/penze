@@ -19,7 +19,7 @@ export const Card = ({ blog, onClick }: IBlogProps) => {
             variant="h5"
             component="div"
           >
-            {title}
+            {title.slice(0, 25)}...
           </Typography>
           <Typography gutterBottom variant="subtitle1" component="div">
             {date}
