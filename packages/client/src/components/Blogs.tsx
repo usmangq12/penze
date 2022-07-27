@@ -1,14 +1,13 @@
 import { Grid } from "@mui/material";
+import { memo } from "react";
 import { Card } from "../shared";
-import { IBlog } from "../Models/Blogs";
-import { selectedBlog } from "../store/BlogsSlice";
-import { useAppDispatch } from "../store/hooks";
+import { IBlog } from "../types/";
 
-export const Blogs = ({ blogs }: any) => {
-  const dispatch = useAppDispatch();
+export const MemoizedBlogs = ({ blogs }: any) => {
   // dispatch action on onClick
+  console.log({ blogs });
   const onClick = (blog: any) => {
-    dispatch(selectedBlog(blog));
+    // dispatch(selectedBlog(blog));
   };
   return (
     <Grid container item sx={{ mt: 10 }}>
@@ -29,3 +28,5 @@ export const Blogs = ({ blogs }: any) => {
     </Grid>
   );
 };
+
+export const Blogs = memo(MemoizedBlogs);

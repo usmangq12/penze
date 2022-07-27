@@ -4,21 +4,38 @@ import { Blogs, Pagination, CreateBlogModal } from "../components";
 import AddIcon from "@mui/icons-material/Add";
 import Fab from "@mui/material/Fab";
 import { Drawer } from "../shared/Drawer";
-import { useSelector } from "react-redux";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import * as React from "react";
+
+import { fetchBlogs } from "../store/BlogsSlice";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { IBlog } from "../types";
+
 export const Home = () => {
-  let blogs = useSelector(({ blogs }: any) => blogs.blogs);
+  const dispatch = useAppDispatch();
+  const { blogs, loading } = useAppSelector((state) => state.blogs);
   const itemsPerPage = 5;
   const [page, setPage] = useState(1);
   const [openCreateBlogModal, setOpenCreateBlogModal] = useState(false);
-  const [slicedBlogs, setSlicedBlogs] = useState(blogs);
-  const [noOfPages] = useState(Math.ceil(blogs.length / itemsPerPage));
+  const [slicedBlogs, setSlicedBlogs] = useState<IBlog[]>([]);
+  const [noOfPages, setNoOfPages] = useState(0);
   const config = { noOfPages, page };
+
+  useEffect(() => {
+    dispatch(fetchBlogs() as any);
+  }, [dispatch]);
+
   const sliceBlogs = () => {
     return blogs.slice((page - 1) * itemsPerPage, page * itemsPerPage);
   };
+
+  useEffect(() => {
+    const paginatedBlogs = blogs && blogs.length && sliceBlogs();
+    setSlicedBlogs(paginatedBlogs || []);
+    setNoOfPages(Math.ceil(blogs.length / itemsPerPage));
+  }, [page, blogs]);
+
   const handlePaginationChange = (event: any, value: any) => {
     setPage(value);
   };
@@ -29,7 +46,7 @@ export const Home = () => {
 
   return (
     <Grid container>
-      <Blogs blogs={slicedBlogs} />
+      {blogs && blogs.length && <Blogs blogs={slicedBlogs} />}
       <Grid container item justifyContent="center">
         <Pagination config={config} onChange={handlePaginationChange} />
       </Grid>

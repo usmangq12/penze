@@ -1,13 +1,14 @@
-import { Card as MuiCard, Grid } from "@mui/material";
+import { Card as MuiCard } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { LinkStlyed } from "./LinkStyled";
-import { IBlogProps } from "../Models/Blogs";
+import { IBlogProps } from "../types";
 
 export const Card = ({ blog, onClick }: IBlogProps) => {
-  const { title, date, content } = blog;
+  console.log("card blog", blog);
+  const { title, date, description } = blog;
   return (
     <LinkStlyed to="/details" state={blog} onClick={() => onClick(blog)}>
       <MuiCard>
@@ -24,7 +25,7 @@ export const Card = ({ blog, onClick }: IBlogProps) => {
             {date}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {content.slice(0, 100)}...
+            {description.slice(0, 100)}...
           </Typography>
         </CardContent>
         <CardActions>
