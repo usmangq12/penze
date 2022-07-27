@@ -16,8 +16,8 @@ export const blogsSlice = createSlice({
         state.blogs.push(action.payload);
         state.blog = action.payload;
       },
-      prepare: (blog) => {
-        return { payload: { blog } };
+      prepare: ({ title, content }) => {
+        return { payload: { title, content } };
       },
     },
     selectedBlog: {

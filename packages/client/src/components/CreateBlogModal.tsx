@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, TextField, Button, FormGroup } from "@mui/material";
-
+import { StyeldButton } from "../shared/StyeldButton";
 export const CreateBlogModal = ({ selectedRow }: any) => {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   return (
-    <Grid component="form">
+    <Grid>
       <Grid
         container
         justifyContent="center"
         alignItems="center"
         flexWrap="wrap"
-        // flexDirection="coli"
         spacing={2}
         sx={{ px: 2, py: 2 }}
       >
@@ -17,9 +18,9 @@ export const CreateBlogModal = ({ selectedRow }: any) => {
           <TextField
             fullWidth
             required
-            id="filled-required"
-            label="Required"
-            defaultValue="Hello World"
+            placeholder="Tittle"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             variant="filled"
           />
         </Grid>
@@ -31,23 +32,12 @@ export const CreateBlogModal = ({ selectedRow }: any) => {
             label="Required"
             defaultValue="Hello World"
             variant="filled"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           />
         </Grid>
         <Grid container justifyContent="center">
-          <Button
-            variant="contained"
-            sx={{
-              px: 2.5,
-              py: 1.5,
-              my: 4,
-              background: "#29343B ",
-              "&:hover": {
-                backgroundColor: "#29343B !important",
-              },
-            }}
-          >
-            Create
-          </Button>
+          <StyeldButton>Create</StyeldButton>
         </Grid>
       </Grid>
     </Grid>

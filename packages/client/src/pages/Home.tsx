@@ -6,6 +6,7 @@ import Fab from "@mui/material/Fab";
 import { Drawer } from "../shared/Drawer";
 import { useSelector } from "react-redux";
 import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import * as React from "react";
 export const Home = () => {
   let blogs = useSelector(({ blogs }: any) => blogs.blogs);
@@ -25,13 +26,13 @@ export const Home = () => {
     const paginatedBlogs = sliceBlogs();
     setSlicedBlogs(paginatedBlogs);
   }, [page]);
+
   return (
     <Grid container>
       <Blogs blogs={slicedBlogs} />
       <Grid container item justifyContent="center">
         <Pagination config={config} onChange={handlePaginationChange} />
       </Grid>
-
       <Drawer
         title="Create Blog"
         openDrawer={openCreateBlogModal}

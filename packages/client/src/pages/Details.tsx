@@ -15,21 +15,9 @@ import { TextArea } from "../shared/TextArea";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Comment } from "../types";
-import { useParams } from "react-router-dom";
-
 export const Details = () => {
-  const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
-  const [comment, setComments] = useState<Comment[]>([]);
   const [openInput, setInput] = useState<boolean>(true);
 
-  const addComments = () => {
-    const blogComment: Comment = {
-      name: "",
-      message: "",
-    };
-    setComments([...comment, blogComment]);
-  };
   const showInput = () => {
     setInput(!openInput);
   };
@@ -115,7 +103,7 @@ export const Details = () => {
               </Grid>
             </CardContent>
             <CardActions>
-              <StyeldButton handelClick={addComments}>Submit</StyeldButton>
+              <StyeldButton>Submit</StyeldButton>
             </CardActions>
           </Card>
         </Grid>
@@ -177,7 +165,7 @@ export const Details = () => {
               <TextArea />
             </Grid>
             <Grid>
-              <StyeldButton handelClick={addComments}>Submit</StyeldButton>
+              <StyeldButton>Submit</StyeldButton>
               <StyeldButton handelClick={hideInput}>Cancel</StyeldButton>
             </Grid>
           </Grid>
