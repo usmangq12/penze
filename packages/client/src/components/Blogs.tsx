@@ -10,7 +10,7 @@ export const MemoizedBlogs = ({ blogs }: any) => {
     // dispatch(selectedBlog(blog));
   };
   return (
-    <Grid container item sx={{ mt: 20 }}>
+    <Grid container item sx={{ mt: 10 }}>
       {blogs.map((blog: IBlog) => (
         <Grid
           // key={`blog-id${i}`}

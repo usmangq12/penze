@@ -6,7 +6,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { LinkStlyed } from "../shared/LinkStyled";
-
 export function Navbar() {
   return (
     <Box sx={{ display: "flex" }}>

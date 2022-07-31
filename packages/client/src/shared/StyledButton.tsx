@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 
-export const StyeldButton = ({ text, handelClick, children, ...rest }: any) => {
+export const StyledButton = ({ text, handelClick, children, ...rest }: any) => {
   return (
     <Button
       variant="contained"
