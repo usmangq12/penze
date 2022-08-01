@@ -5,9 +5,10 @@ export const getAllBlogs = () => {
 };
 
 export const getBlogById = (id: string) => {
+  console.log({ id });
   return axios.get("/blog/" + id);
 };
 
-export const crateBlog = (data: any) => {
+export const createBlog = (data: any) => {
   return axios.post("/blog", data);
 };

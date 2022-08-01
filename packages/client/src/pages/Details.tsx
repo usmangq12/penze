@@ -1,4 +1,6 @@
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -9,20 +11,46 @@ import {
   CardActions,
   ListItemAvatar,
 } from "@mui/material";
-import { StyledButton } from "../shared/StyledButton";
-import { TextField } from "../shared/TextField";
-import { TextArea } from "../shared/TextArea";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import { Comment } from "../types";
-export const Details = () => {
-  const [openInput, setInput] = useState<boolean>(true);
+import { useAppDispatch } from "../store/hooks";
+import { StyledButton, TextField, TextArea } from "../shared";
+import { fetchBlogById } from "../store/BlogsSlice";
 
+export const Details = () => {
+  const [openInput, setInput] = useState(true);
+  const [comments, setComments] = useState<Comment[]>([]);
+  const [details, setDetails] = useState<any>();
+  const dispatch = useAppDispatch();
+  const params = useParams();
+  console.log({ params });
+
+  useEffect(() => {
+    dispatch(fetchBlogById(params.id as any));
+  }, [dispatch]);
+
+  const addComments = () => {
+    const blogComment: Comment = {
+      name: "",
+      message: "",
+    };
+    setComments([...comments, blogComment]);
+  };
   const showInput = () => {
     setInput(!openInput);
   };
 
-  const detail = useSelector(({ blogs }: any) => blogs.selectedBlogDetails);
+  const detail = useSelector(
+    (getBlogDetail: any) => getBlogDetail.getBlogDetail
+  );
+
+  useEffect(() => {
+    console.log("blog detail*: ", detail);
+    if (detail?.blogDetail) {
+      setDetails(detail.blogDetail[0]);
+    }
+  }, [detail]);
+
+  console.log({ details });
 
   const hideInput = () => {
     setInput(!openInput);
@@ -52,16 +80,18 @@ export const Details = () => {
             justifyContent: { xs: "center", sm: "left" },
           }}
         >
-          <Typography
-            variant="h5"
-            sx={{
-              borderLeft: "3px inset #fff",
-              fontSize: "40px",
-              fontWeight: "750",
-            }}
-          >
-            {detail.title}
-          </Typography>
+          {details?.title && (
+            <Typography
+              variant="h5"
+              sx={{
+                borderLeft: "3px inset #fff",
+                fontSize: "40px",
+                fontWeight: "750",
+              }}
+            >
+              {details?.title}
+            </Typography>
+          )}
         </Grid>
 
         <Grid
@@ -75,7 +105,9 @@ export const Details = () => {
             mt: 2,
           }}
         >
-          <Typography variant="body1">{detail.content}</Typography>
+          {details?.description && (
+            <Typography variant="body1">{details?.description}</Typography>
+          )}
         </Grid>
         <Grid
           xs={12}
@@ -172,7 +204,7 @@ export const Details = () => {
         ) : (
           ""
         )}
-        <Grid xs={12} sm={9} md={5.2} mt={2} ml={6}>
+        {/* <Grid xs={12} sm={9} md={5.2} mt={2} ml={6}>
           <Card sx={{ backgroundColor: "	#f0f6ff" }}>
             <Grid
               sx={{
@@ -223,7 +255,7 @@ export const Details = () => {
               </Button>
             </CardActions>
           </Card>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Grid>
   );

@@ -1,10 +1,12 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import blogsSliceReducer from './BlogsSlice';
-import commentsSliceReducer from './CommentsSlice';
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { blogsSlice, createBlogSlice, blogDetiailsSlice } from "./BlogsSlice";
+import commentsSliceReducer from "./CommentsSlice";
 
 export const store = configureStore({
   reducer: {
-    blogs: blogsSliceReducer,
+    blogs: blogsSlice.reducer,
+    createBlog: createBlogSlice.reducer,
+    getBlogDetail: blogDetiailsSlice.reducer,
     comments: commentsSliceReducer,
   },
 });

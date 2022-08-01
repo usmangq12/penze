@@ -6,11 +6,10 @@ import Typography from "@mui/material/Typography";
 import { LinkStlyed } from "./LinkStyled";
 import { IBlogProps } from "../types";
 
-export const Card = ({ blog, onClick }: IBlogProps) => {
-  console.log("card blog", blog);
-  const { title, date, description } = blog;
+export const Card = ({ blog }: IBlogProps) => {
+  const { title, description } = blog;
   return (
-    <LinkStlyed to="/details" state={blog} onClick={() => onClick(blog)}>
+    <LinkStlyed to={`blog/${blog._id}`} state={blog}>
       <MuiCard>
         <CardContent>
           <Typography
@@ -20,9 +19,6 @@ export const Card = ({ blog, onClick }: IBlogProps) => {
             component="div"
           >
             {title.slice(0, 25)}...
-          </Typography>
-          <Typography gutterBottom variant="subtitle1" component="div">
-            {date}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {description.slice(0, 100)}...

@@ -6,11 +6,24 @@ export interface Comment {
 export interface IBlog {
   _id: string;
   title: string;
-  date: string;
   description: string;
 }
 
 export interface IBlogProps {
   blog: IBlog;
-  onClick: any;
+}
+
+export interface IComment {
+  _id: string;
+  senderName: string;
+  comment: string;
+  blogId: string;
+  level: number;
+}
+
+export interface IBlogDetails {
+  _id: string;
+  title: string;
+  description: string;
+  comments: IComment[];
 }

@@ -1,31 +1,29 @@
 import { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
-import { Blogs, Pagination, CreateBlogModal } from "../components";
 import AddIcon from "@mui/icons-material/Add";
 import Fab from "@mui/material/Fab";
 import { Drawer } from "../shared/Drawer";
 import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
-import { ErrorMessage } from "../components/ErrorMessage";
-import * as React from "react";
 
 import { fetchBlogs } from "../store/BlogsSlice";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { ErrorMessage } from "../components/ErrorMessage";
+import { Blogs, Pagination, CreateBlog } from "../components";
 import { IBlog } from "../types";
 
 export const Home = () => {
-  const dispatch = useAppDispatch();
-  const { blogs, loading } = useAppSelector((state) => state.blogs);
   const itemsPerPage = 5;
+  const dispatch = useAppDispatch();
+  const { blogs, loading, error } = useAppSelector((state) => state.blogs);
   const [page, setPage] = useState(1);
   const [openCreateBlogModal, setOpenCreateBlogModal] = useState(false);
   const [slicedBlogs, setSlicedBlogs] = useState<IBlog[]>([]);
   const [noOfPages, setNoOfPages] = useState(0);
   const config = { noOfPages, page };
-
+  console.log({ blogs });
   useEffect(() => {
-    dispatch(fetchBlogs() as any);
-  }, [dispatch]);
+    dispatch(fetchBlogs());
+  }, [dispatch, openCreateBlogModal]);
 
   const sliceBlogs = () => {
     return blogs.slice((page - 1) * itemsPerPage, page * itemsPerPage);
@@ -35,28 +33,14 @@ export const Home = () => {
     const paginatedBlogs = blogs && blogs.length && sliceBlogs();
     setSlicedBlogs(paginatedBlogs || []);
     setNoOfPages(Math.ceil(blogs.length / itemsPerPage));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, blogs]);
 
   const handlePaginationChange = (event: any, value: any) => {
     setPage(value);
   };
-  useEffect(() => {
-    const paginatedBlogs = sliceBlogs();
-    setSlicedBlogs(paginatedBlogs);
-  }, [page]);
-  if (loading === "pending")
-    return (
-      <Grid
-        container
-        alignItems={"center"}
-        height={"100vh"}
-        justifyContent={"center"}
-      >
-        <CircularProgress />
-      </Grid>
-    );
 
-  if (loading === "idle")
+  if (loading === "idle") {
     return (
       <Grid container>
         {slicedBlogs.length && <Blogs blogs={slicedBlogs} />}
@@ -67,8 +51,7 @@ export const Home = () => {
           title="Create Blog"
           openDrawer={openCreateBlogModal}
           closeDrawer={setOpenCreateBlogModal}
-          DrawerComponent={CreateBlogModal}
-          selectedRow={{}}
+          DrawerComponent={CreateBlog}
         />
         <Grid container item>
           <Fab
@@ -100,6 +83,9 @@ export const Home = () => {
         </Grid>
       </Grid>
     );
-  if (loading === "failed") return <ErrorMessage />;
+  }
+
+  if (error) return <ErrorMessage />;
+
   return null;
 };

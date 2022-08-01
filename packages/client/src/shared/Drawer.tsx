@@ -1,9 +1,8 @@
-import React from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { Drawer as MuiDrawer, Grid, Typography, Box } from "@mui/material";
+import { Drawer as MuiDrawer, Grid, Typography } from "@mui/material";
 
 const drawerWidth = 720;
 
@@ -11,7 +10,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: "flex-start",
 }));
@@ -21,22 +19,10 @@ interface IPersistentDrawerRight {
   openDrawer: boolean;
   closeDrawer: Function;
   DrawerComponent: Function;
-  selectedRow: any;
 }
 
 export const Drawer = (props: IPersistentDrawerRight) => {
-  const { title, openDrawer, closeDrawer, DrawerComponent, selectedRow } =
-    props;
-
-  const theme = useTheme();
-
-  const handleDrawerOpen = () => {
-    closeDrawer(true);
-  };
-
-  const handleDrawerClose = () => {
-    closeDrawer(false);
-  };
+  const { title, openDrawer, closeDrawer, DrawerComponent } = props;
 
   return (
     <Grid container item>
@@ -77,7 +63,7 @@ export const Drawer = (props: IPersistentDrawerRight) => {
             </Typography>
             <Grid item justifyContent="center" alignItems="end">
               <CancelIcon
-                onClick={() => closeDrawer(false)}
+                onClick={() => closeDrawer()}
                 sx={{
                   fontSize: 26,
                   right: 20,
@@ -89,7 +75,7 @@ export const Drawer = (props: IPersistentDrawerRight) => {
           </Grid>
         </DrawerHeader>
         <Divider />
-        {openDrawer ? <DrawerComponent selectedRow={selectedRow} /> : null}
+        {openDrawer ? <DrawerComponent closeDrawer={closeDrawer} /> : null}
       </MuiDrawer>
     </Grid>
   );

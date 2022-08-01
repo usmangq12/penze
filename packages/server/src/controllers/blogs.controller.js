@@ -4,9 +4,8 @@ const mongoose = require("mongoose");
 exports.addNewBlog = async (req, res) => {
   const blogData = req.body;
   try {
-    console.log("sdsadsac", blogData);
     const newBlog = await blog.create(blogData);
-    return res.status(200).send({ newBlog });
+    return res.status(200).send(newBlog);
   } catch (e) {
     return res.status(500).send({
       error: "Something went wrong while creating the blog!",
@@ -17,8 +16,8 @@ exports.addNewBlog = async (req, res) => {
 
 exports.getAllBlogs = async (req, res) => {
   try {
-    console.log("--------------Blogs caught");
     const blogs = await blog.find();
+    console.log({ blogs });
     return res.status(200).send(blogs);
   } catch (e) {
     return res.status(500).send(e);
@@ -26,8 +25,6 @@ exports.getAllBlogs = async (req, res) => {
 };
 
 exports.getBlogById = async (req, res) => {
-  const id = req.params.íd;
-  console.log({ req: req.params.id });
   if (!req.params.id) {
     return res.status(400).send({ error: "Blog id is missing!" });
   }
@@ -42,9 +39,8 @@ exports.getBlogById = async (req, res) => {
       },
     },
   ]);
-  console.log({ blogRecord });
   if (!blogRecord) {
     return res.status(404).send({ error: "Blog not found!" });
   }
-  return res.status(200).send({ blogRecord });
+  return res.status(200).send(blogRecord);
 };

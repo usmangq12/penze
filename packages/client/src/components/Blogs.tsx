@@ -4,11 +4,6 @@ import { Card } from "../shared";
 import { IBlog } from "../types/";
 
 export const MemoizedBlogs = ({ blogs }: any) => {
-  // dispatch action on onClick
-  console.log({ blogs });
-  const onClick = (blog: any) => {
-    // dispatch(selectedBlog(blog));
-  };
   return (
     <Grid container item sx={{ mt: 10 }}>
       {blogs.map((blog: IBlog) => (
@@ -22,7 +17,7 @@ export const MemoizedBlogs = ({ blogs }: any) => {
           sm={6}
           md={3}
         >
-          <Card blog={blog} onClick={(blog: any) => onClick(blog)} />
+          <Card blog={blog} />
         </Grid>
       ))}
     </Grid>
